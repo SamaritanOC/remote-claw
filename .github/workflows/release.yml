@@ -1,6 +1,4 @@
-# Create a GitHub Release when a version tag (v*) is pushed.
-# Usage: git tag v0.1.0 && git push origin v0.1.0
-name: Release
+name: Build and Release
 
 on:
   push:
@@ -10,21 +8,40 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-permissions:
-  contents: write
-
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Create Release
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pil fakeroot dpkg
+
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Build Electron app
+        run: npm run electron:build
+
+      - name: List dist-app contents
+        run: ls -la dist-app/
+
+      - name: Rename deb for release
+        run: |
+          find dist-app -name "*.deb" | head -1 | xargs -I{} cp {} dist-app/oc-dashporter-amd64.deb
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          files: dist-app/oc-dashporter-amd64.deb
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
