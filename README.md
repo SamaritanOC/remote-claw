@@ -18,7 +18,7 @@ Road Laptop
 - OpenClaw installed and running on a host machine
 - Tailscale with the host machine on your tailnet
 - The host gateway exposed via Tailscale Serve
-- Parrot OS or any Debian-based Linux on the remote machine
+- Any Debian-based Linux on the remote machine
 
 ## Host configuration
 
