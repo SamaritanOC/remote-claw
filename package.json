@@ -2,7 +2,7 @@
   "name": "oc-dashporter",
   "version": "1.0.0",
   "main": "dist-electron/main.js",
-  "description": "Mission Control — open-source OpenClaw GUI and AI agent dashboard for managing local AI agents, models, memory, and skills",
+  "description": "Native Linux desktop app for remote access to your OpenClaw installation over Tailscale",
   "keywords": [
     "openclaw",
     "openclaw-gui",
@@ -27,9 +27,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/robsannaa/openclaw-mission-control.git"
+    "url": "https://github.com/SamaritanOC/oc-dashporter.git"
   },
-  "homepage": "https://github.com/robsannaa/openclaw-mission-control",
+  "homepage": "https://github.com/SamaritanOC/oc-dashporter",
   "bin": {
     "openclaw-dashboard": "./bin/cli.mjs"
   },
