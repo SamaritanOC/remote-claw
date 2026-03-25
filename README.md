@@ -1,8 +1,8 @@
 # OC Dashporter
 
-A native Linux desktop app for remote access to your [OpenClaw](https://openclaw.ai) installation.
+A native Linux desktop app for remote access to your [OpenClaw](https://openclaw.ai) dashboard.
 
-OC Dashporter wraps the OpenClaw built-in Control UI in an Electron shell, giving you a proper installable app with persistent authentication — no browser, no token prompts, no storage clearing.
+OC Dashporter installs the full OpenClaw dashboard as a native app on any Linux machine — giving you complete access to your OpenClaw installation over Tailscale, exactly as if you were sitting at the host machine.
 
 ## How it works
 
