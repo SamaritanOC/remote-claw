@@ -98,6 +98,13 @@ If you do not see a pending device, confirm your gateway URL is correct and that
 ## License
 MIT
 
+### Updating from v1.0.0
+```bash
+wget https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb
+sudo dpkg -i oc-dashporter-amd64.deb
+```
+Your pairing and settings are preserved — no re-pairing required.
+
 ## Support The Samaritan Project 
 
 This is an active, build-in-public project focused on developing replicable, private agentic AI infrastructure that can be deployed across any industry or use case. If you're interested in where local-first AI is headed, and want to support the hardware and infrastructure that makes this possible, follow along and contribute at [The Samaritan Project- Buy Me A Coffee](https://buymeacoffee.com/thesamaritanproject)
