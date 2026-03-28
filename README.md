@@ -10,8 +10,8 @@ Choose the version for your operating system:
 
 | OS | Download |
 |---|---|
-| Linux (Debian/Ubuntu/Parrot) | [oc-dashporter-amd64.deb](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb) |
-| Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-windows-setup.exe) |
+| Linux (Debian/Ubuntu/Parrot) | [oc-dashporter-amd64.deb](https://github.com/SamaritanOC/oc-dashporter/releases/download/linux-v1.0.2/oc-dashporter-amd64.deb) |
+| Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/download/windows-v1.0.0/oc-dashporter-windows-setup.exe) |
 
 For Windows installation instructions see [windows/README.md](windows/README.md).
 
@@ -56,7 +56,7 @@ Add this to your openclaw.json gateway block:
 
 Download the latest release:
 ```bash
-wget https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb
+wget https://github.com/SamaritanOC/oc-dashporter/releases/download/linux-v1.0.2/oc-dashporter-amd64.deb
 sudo dpkg -i oc-dashporter-amd64.deb
 ```
 
@@ -86,7 +86,7 @@ OC Dashporter checks for updates automatically on every launch. When a new versi
 #### Manual
 You can also update at any time by re-running the install commands:
 ```bash
-wget https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb
+wget https://github.com/SamaritanOC/oc-dashporter/releases/download/linux-v1.0.2/oc-dashporter-amd64.deb
 sudo dpkg -i oc-dashporter-amd64.deb
 ```
 Both methods are equivalent — your pairing and settings are preserved either way, no re-pairing required.
