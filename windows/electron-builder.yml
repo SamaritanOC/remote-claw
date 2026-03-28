@@ -19,6 +19,11 @@ files:
   - public/**/*
   - node_modules/**/*
 
+asarUnpack:
+  - node_modules/**/*
+  - .next/**/*
+  - public/**/*
+
 win:
   target:
     - nsis

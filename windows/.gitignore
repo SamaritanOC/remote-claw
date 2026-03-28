@@ -1,7 +1,6 @@
 node_modules/
 dist-electron/
 dist-app/
-src/
 .next/
 .env*
 *.log
@@ -17,7 +16,6 @@ public/window.svg
 components.json
 eslint.config.mjs
 instrumentation.ts
-next.config.ts
 next-env.d.ts
 .npmignore
 playwright.config.ts
