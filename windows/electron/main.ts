@@ -1,83 +1,21 @@
-import { app, BrowserWindow, shell, dialog } from 'electron'
+import { app, BrowserWindow, shell, net, protocol } from 'electron'
 import { autoUpdater } from 'electron-updater'
-import { spawn, ChildProcess } from 'child_process'
 import * as path from 'path'
-import * as net from 'net'
-
-const GATEWAY_PORT = 18789
-const GATEWAY_ORIGIN = `http://127.0.0.1:${GATEWAY_PORT}`
+import * as fs from 'fs'
 
 let mainWindow: BrowserWindow | null = null
-let nextServer: ChildProcess | null = null
+
+function getControlUiRoot(): string {
+  return app.isPackaged
+    ? path.join(process.resourcesPath, 'app.asar.unpacked', 'control-ui')
+    : path.join(__dirname, '..', '..', 'control-ui')
+}
 
 function initAutoUpdater() {
   autoUpdater.autoDownload = true
   autoUpdater.autoInstallOnAppQuit = true
-
-  autoUpdater.on('update-available', () => {
-    dialog.showMessageBox({
-      type: 'info',
-      title: 'Update available',
-      message: 'A new version of OC Dashporter is downloading in the background. You will be notified when it is ready to install.'
-    })
-  })
-
-  autoUpdater.on('update-downloaded', () => {
-    dialog.showMessageBox({
-      type: 'info',
-      title: 'Update ready',
-      message: 'Update downloaded. OC Dashporter will update when you next quit the app.',
-      buttons: ['Restart now', 'Later']
-    }).then(result => {
-      if (result.response === 0) autoUpdater.quitAndInstall()
-    })
-  })
-
-  autoUpdater.on('error', (err) => {
-    console.error('Auto-updater error:', err)
-  })
-
+  autoUpdater.on('error', (err) => console.error('Auto-updater error:', err))
   autoUpdater.checkForUpdatesAndNotify()
-}
-
-function getUnpackedPath(): string {
-  return path.join(process.resourcesPath, 'app.asar.unpacked')
-}
-
-function isPortListening(port: number): Promise<boolean> {
-  return new Promise(resolve => {
-    const sock = new net.Socket()
-    sock.setTimeout(300)
-    sock.on('connect', () => { sock.destroy(); resolve(true) })
-    sock.on('error', () => resolve(false))
-    sock.on('timeout', () => resolve(false))
-    sock.connect(port, '127.0.0.1')
-  })
-}
-
-async function waitForPort(port: number, timeoutMs = 60000): Promise<void> {
-  const deadline = Date.now() + timeoutMs
-  while (Date.now() < deadline) {
-    if (await isPortListening(port)) return
-    await new Promise(r => setTimeout(r, 500))
-  }
-  throw new Error(`Next.js server did not start within ${timeoutMs / 1000}s`)
-}
-
-function startNextServer(): Promise<void> {
-  const appRoot = getUnpackedPath()
-  const nextEntry = path.join(appRoot, 'node_modules', 'next', 'dist', 'bin', 'next')
-
-  nextServer = spawn(process.execPath, [nextEntry, 'start', '-H', '127.0.0.1', '-p', String(GATEWAY_PORT)], {
-    cwd: appRoot,
-    env: { ...process.env, NODE_ENV: 'production', ELECTRON_RUN_AS_NODE: '1' }
-  })
-
-  nextServer.stdout?.on('data', d => console.log('[next]', d.toString().trim()))
-  nextServer.stderr?.on('data', d => console.error('[next]', d.toString().trim()))
-  nextServer.on('error', err => console.error('Failed to start Next.js server:', err))
-
-  return waitForPort(GATEWAY_PORT)
 }
 
 async function createWindow() {
@@ -93,17 +31,6 @@ async function createWindow() {
       nodeIntegration: false,
       sandbox: true,
       webSecurity: true,
-      allowRunningInsecureContent: false,
-      experimentalFeatures: false,
-    }
-  })
-
-  mainWindow.webContents.on('will-navigate', (event, url) => {
-    const target = new URL(url)
-    const allowed = new URL(GATEWAY_ORIGIN)
-    if (target.origin !== allowed.origin) {
-      event.preventDefault()
-      shell.openExternal(url)
     }
   })
 
@@ -113,21 +40,25 @@ async function createWindow() {
   })
 
   mainWindow.setMenuBarVisibility(false)
-
-  if (app.isPackaged) {
-    await startNextServer()
-  }
-
-  mainWindow.loadURL(GATEWAY_ORIGIN)
+  mainWindow.loadURL('app://dashporter/index.html')
   mainWindow.on('closed', () => { mainWindow = null })
 }
 
 app.whenReady().then(() => {
+  protocol.handle('app', (request) => {
+    const url = new URL(request.url)
+    const filePath = path.join(getControlUiRoot(), url.pathname.replace(/^\//, ''))
+    if (!fs.existsSync(filePath)) {
+      return new Response('Not found', { status: 404 })
+    }
+    return net.fetch(`file://${filePath}`)
+  })
+
   createWindow()
-  initAutoUpdater()
+
+  if (app.isPackaged) {
+    initAutoUpdater()
+  }
 })
 
-app.on('window-all-closed', () => {
-  nextServer?.kill()
-  app.quit()
-})
+app.on('window-all-closed', () => app.quit())

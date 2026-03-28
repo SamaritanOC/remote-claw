@@ -15,14 +15,10 @@ directories:
 
 files:
   - dist-electron/**/*
-  - .next/**/*
-  - public/**/*
-  - node_modules/**/*
+  - control-ui/**/*
 
 asarUnpack:
-  - .next/**/*
-  - public/**/*
-  - node_modules/**/*
+  - control-ui/**/*
 
 linux:
   target:

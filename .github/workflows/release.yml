@@ -23,36 +23,19 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pil fakeroot dpkg
+          sudo apt-get install -y fakeroot dpkg
 
       - name: Install Node dependencies
         run: npm install
 
-      - name: Build Next.js app
-        run: npm run build
-
       - name: Build Electron app
         run: npm run electron:build
 
-      - name: List dist-app contents
-        run: ls -la dist-app/
-
       - name: Rename deb for release
-        run: |
-          find dist-app -name "*.deb" | head -1 | xargs -I{} cp {} dist-app/oc-dashporter-amd64.deb
+        run: find dist-app -name "*.deb" | head -1 | xargs -I{} cp {} dist-app/oc-dashporter-amd64.deb
 
       - name: Rename AppImage for release
-        run: |
-          find dist-app -name "*.AppImage" | head -1 | xargs -I{} cp {} dist-app/oc-dashporter-amd64.AppImage
-
-      - name: Extract changelog for this version
-        id: changelog
-        run: |
-          VERSION=${GITHUB_REF_NAME#v}
-          BODY=$(awk "/^## \[$VERSION\]/{found=1; next} found && /^## \[/{exit} found{print}" CHANGELOG.md)
-          echo "BODY<<EOF" >> $GITHUB_OUTPUT
-          echo "$BODY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+        run: find dist-app -name "*.AppImage" | head -1 | xargs -I{} cp {} dist-app/oc-dashporter-amd64.AppImage
 
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
@@ -60,6 +43,5 @@ jobs:
           files: |
             dist-app/oc-dashporter-amd64.deb
             dist-app/oc-dashporter-amd64.AppImage
-          body: ${{ steps.changelog.outputs.BODY }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
