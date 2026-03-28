@@ -9,20 +9,13 @@ executableName: oc-dashporter-windows
 copyright: Copyright 2026 SamaritanOC
 artifactName: oc-dashporter-windows-setup.${ext}
 
-extraMetadata:
-  main: dist-electron/main.js
-
 directories:
-  output: dist-app
+  output: windows/dist-app
   buildResources: windows/build
+  app: .
 
 files:
-  - from: .
-    filter:
-      - package.json
-  - from: windows/dist-electron
-    to: dist-electron
-    filter: "**/*"
+  - dist-electron/**/*
 
 win:
   target:
