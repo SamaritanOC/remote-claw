@@ -52,6 +52,19 @@ Download and run the installer:
 oc-dashporter-windows-setup.exe
 ```
 
+**Windows SmartScreen warning**
+
+Because OC Dashporter is not yet code-signed, Windows Defender SmartScreen will show a blue warning dialog when you run the installer. This is expected for open-source apps distributed outside the Microsoft Store.
+
+To proceed:
+1. Click **More info** in the SmartScreen dialog
+2. Click **Run anyway**
+
+If you prefer to unblock the file before running it:
+1. Right-click `oc-dashporter-windows-setup.exe` → **Properties**
+2. At the bottom of the General tab, check **Unblock**
+3. Click **OK**, then run the installer normally
+
 Follow the on-screen prompts. A desktop shortcut and Start Menu entry will be created automatically.
 
 ## Versions
