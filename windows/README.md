@@ -41,7 +41,7 @@ Add this to your openclaw.json gateway block:
   "allowTailscale": true
 },
 "controlUi": {
-  "allowedOrigins": ["https://your-tailscale-hostname"]
+  "allowedOrigins": ["https://your-tailscale-hostname", "http://127.0.0.1:18790"]
 }
 ```
 

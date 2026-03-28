@@ -1,14 +1,53 @@
-import { app, BrowserWindow, shell, net, protocol } from 'electron'
+import { app, BrowserWindow, shell } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as http from 'http'
+
+const UI_PORT = 18790
 
 let mainWindow: BrowserWindow | null = null
+let uiServer: http.Server | null = null
+
+const MIME: Record<string, string> = {
+  '.html': 'text/html',
+  '.js':   'application/javascript',
+  '.css':  'text/css',
+  '.png':  'image/png',
+  '.ico':  'image/x-icon',
+  '.svg':  'image/svg+xml',
+  '.map':  'application/json',
+}
 
 function getControlUiRoot(): string {
   return app.isPackaged
     ? path.join(process.resourcesPath, 'app.asar.unpacked', 'control-ui')
     : path.join(__dirname, '..', '..', 'control-ui')
+}
+
+function startUiServer(): Promise<void> {
+  const root = getControlUiRoot()
+  return new Promise((resolve, reject) => {
+    uiServer = http.createServer((req, res) => {
+      const rel = req.url === '/' ? 'index.html' : req.url!.split('?')[0]
+      const filePath = path.join(root, rel)
+      fs.readFile(filePath, (err, data) => {
+        if (err) {
+          fs.readFile(path.join(root, 'index.html'), (e2, d2) => {
+            if (e2) { res.writeHead(404); res.end(); return }
+            res.writeHead(200, { 'Content-Type': 'text/html' })
+            res.end(d2)
+          })
+          return
+        }
+        const ext = path.extname(filePath)
+        res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' })
+        res.end(data)
+      })
+    })
+    uiServer.listen(UI_PORT, '127.0.0.1', resolve)
+    uiServer.on('error', reject)
+  })
 }
 
 function initAutoUpdater() {
@@ -40,25 +79,17 @@ async function createWindow() {
   })
 
   mainWindow.setMenuBarVisibility(false)
-  mainWindow.loadURL('app://dashporter/index.html')
+  await startUiServer()
+  mainWindow.loadURL(`http://127.0.0.1:${UI_PORT}`)
   mainWindow.on('closed', () => { mainWindow = null })
 }
 
 app.whenReady().then(() => {
-  protocol.handle('app', (request) => {
-    const url = new URL(request.url)
-    const filePath = path.join(getControlUiRoot(), url.pathname.replace(/^\//, ''))
-    if (!fs.existsSync(filePath)) {
-      return new Response('Not found', { status: 404 })
-    }
-    return net.fetch(`file://${filePath}`)
-  })
-
   createWindow()
-
-  if (app.isPackaged) {
-    initAutoUpdater()
-  }
+  if (app.isPackaged) initAutoUpdater()
 })
 
-app.on('window-all-closed', () => app.quit())
+app.on('window-all-closed', () => {
+  uiServer?.close()
+  app.quit()
+})
