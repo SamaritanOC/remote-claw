@@ -11,7 +11,7 @@ Choose the version for your operating system:
 | OS | Download |
 |---|---|
 | Linux (Debian/Ubuntu/Parrot) | [oc-dashporter-amd64.deb](https://github.com/SamaritanOC/oc-dashporter/releases/download/linux-v1.0.2/oc-dashporter-amd64.deb) |
-| Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/download/windows-v1.0.2/oc-dashporter-windows-setup.exe) |
+| Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-windows-setup.exe) |
 
 For Windows installation instructions see [windows/README.md](windows/README.md).
 
