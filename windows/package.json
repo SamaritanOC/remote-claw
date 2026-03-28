@@ -14,8 +14,11 @@
   },
   "homepage": "https://github.com/SamaritanOC/oc-dashporter",
   "scripts": {
-    "electron:build": "tsc -p tsconfig.electron.json && electron-builder --publish never",
+    "electron:build": "tsc -p tsconfig.electron.json && electron-builder --win --publish never",
     "electron:compile": "tsc -p tsconfig.electron.json"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
   },
   "devDependencies": {
     "@types/node": "^20",
