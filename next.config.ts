@@ -28,12 +28,10 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  // Ensure modules resolve from project root (avoids HOME being used as context)
+  // Pin module resolution to the project root — prevents webpack from walking
+  // up into system directories on Windows (e.g. Application Data junction points)
   webpack: (config, { dir }) => {
-    config.resolve.modules = [
-      path.join(dir, "node_modules"),
-      ...(Array.isArray(config.resolve.modules) ? config.resolve.modules : ["node_modules"]),
-    ];
+    config.resolve.modules = [path.join(dir, "node_modules")];
     return config;
   },
 };
