@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Compile Windows Electron main
-        run: tsc -p windows/tsconfig.electron.json
+        run: npx tsc -p windows/tsconfig.electron.json
 
       - name: Build Windows installer
         run: npx electron-builder --win --config windows/electron-builder.yml --publish never
