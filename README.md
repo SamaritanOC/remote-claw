@@ -2,15 +2,13 @@
 
 A native desktop app for remote access to your [OpenClaw](https://openclaw.ai) installation.
 
-OC Dashporter installs your fully functional, default OpenClaw Mission Control dashboard on a remote Windows or Linux computer. 
+OC Dashporter installs your fully functional, default OpenClaw Mission Control dashboard on a remote Windows or Linux computer.
 
 ## Download
 
-Choose the version for your operating system:
-
 | OS | Download |
 |---|---|
-| Linux (Debian/Ubuntu/Parrot) | [oc-dashporter-amd64.deb](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb) |
+| Linux (Debian/Ubuntu/Parrot) | [oc-dashporter-amd64.deb](https://github.com/SamaritanOC/oc-dashporter/releases/download/linux-v1.0.3/oc-dashporter-amd64.deb) |
 | Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-windows-setup.exe) |
 
 For Windows installation instructions see [windows/README.md](windows/README.md).
@@ -34,7 +32,7 @@ Road Laptop
 - OpenClaw installed and running on a host machine
 - Tailscale with the host machine on your tailnet
 - The host gateway exposed via Tailscale Serve
-- Any Debian-based Linux on the remote machine
+- Any 64-bit Linux desktop
 
 ### Host configuration
 
@@ -54,29 +52,12 @@ Add this to your openclaw.json gateway block:
 
 ### Installation
 
-Download the latest release:
+**First time only:** install GDebi so `.deb` files open with a click:
 ```bash
-wget https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb
-sudo dpkg -i oc-dashporter-amd64.deb
+sudo apt install gdebi
 ```
 
-Or build from source:
-```bash
-git clone https://github.com/SamaritanOC/oc-dashporter.git
-cd oc-dashporter
-npm install
-npm run electron:build
-sudo dpkg -i dist-app/oc-dashporter-*-amd64.deb
-```
-
-### Versions
-
-See [CHANGELOG.md](./CHANGELOG.md) for the full version history and release notes.
-
-| Version | Date | Notes |
-|---------|------|-------|
-| [1.0.1](https://github.com/SamaritanOC/oc-dashporter/releases/tag/v1.0.1) | 2026-03-26 | Security hardening |
-| [1.0.0](https://github.com/SamaritanOC/oc-dashporter/releases/tag/v1.0.0) | 2026-03-01 | Initial release |
+Then download `oc-dashporter-amd64.deb` and double-click it. Click **Install Package** in the window that opens.
 
 ### Updating
 
@@ -84,16 +65,11 @@ See [CHANGELOG.md](./CHANGELOG.md) for the full version history and release note
 OC Dashporter checks for updates automatically on every launch. When a new version is available it downloads in the background and prompts you to restart to apply it. No terminal required.
 
 #### Manual
-You can also update at any time by re-running the install commands:
-```bash
-wget https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-amd64.deb
-sudo dpkg -i oc-dashporter-amd64.deb
-```
-Both methods are equivalent — your pairing and settings are preserved either way, no re-pairing required.
+Download the latest `.deb` from the [releases page](https://github.com/SamaritanOC/oc-dashporter/releases) and double-click to install.
 
 ### First launch
 
-1. Open OC Dashporter from your application menu
+1. Open OC Dashporter
 2. Enter your gateway URL (e.g. https://your-machine.tailnet-name.ts.net)
 3. Enter your gateway token (found in ~/.openclaw/openclaw.json under gateway.auth.token)
 4. Click Connect
@@ -113,19 +89,19 @@ OC Dashporter is an Electron app. On Linux systems running Wayland, the app may 
 
 **Fix — force XWayland mode:**
 ```bash
-./OC-Dashporter.AppImage --ozone-platform=x11
+./oc-dashporter-amd64.AppImage --ozone-platform=x11
 ```
 
 Or set it permanently by editing your launcher/desktop entry to include `--ozone-platform=x11` in the `Exec=` line.
 
 On GNOME + Wayland, you can also try:
 ```bash
-GDK_BACKEND=x11 ./OC-Dashporter.AppImage
+GDK_BACKEND=x11 ./oc-dashporter-amd64.AppImage
 ```
 
 #### Pairing approval
 
-When you open DashPorter for the first time and enter your gateway URL and token, the gateway registers a new device and waits for operator approval.
+When you open OC Dashporter for the first time and enter your gateway URL and token, the gateway registers a new device and waits for operator approval.
 
 **To approve:**
 1. Open Mission Control or the OpenClaw webchat on your gateway host
