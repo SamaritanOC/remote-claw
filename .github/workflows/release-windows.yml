@@ -25,6 +25,12 @@ jobs:
 
       - name: Build Next.js app
         run: npm run build
+        env:
+          # Redirect user profile vars so @vercel/nft and webpack don't scan
+          # Windows junction points (e.g. 'Application Data') in the real home dir
+          USERPROFILE: ${{ github.workspace }}
+          APPDATA: ${{ github.workspace }}
+          HOME: ${{ github.workspace }}
 
       - name: Compile Windows Electron main
         run: npx tsc -p windows/tsconfig.electron.json
