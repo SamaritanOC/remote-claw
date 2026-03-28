@@ -1,0 +1,26 @@
+{
+  "name": "oc-dashporter-windows",
+  "version": "1.0.0",
+  "main": "dist-electron/main.js",
+  "description": "Native Windows desktop app for remote access to your OpenClaw installation over Tailscale",
+  "license": "MIT",
+  "author": {
+    "name": "SamaritanOC",
+    "email": "admin@seeker.one"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamaritanOC/oc-dashporter.git"
+  },
+  "homepage": "https://github.com/SamaritanOC/oc-dashporter",
+  "scripts": {
+    "electron:build": "tsc -p tsconfig.electron.json && electron-builder --publish never",
+    "electron:compile": "tsc -p tsconfig.electron.json"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "electron": "^41.0.3",
+    "electron-builder": "^26.8.1",
+    "typescript": "^5"
+  }
+}

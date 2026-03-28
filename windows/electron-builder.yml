@@ -1,0 +1,25 @@
+appId: io.github.samaritanoc.oc-dashporter
+productName: OC Dashporter
+executableName: oc-dashporter
+copyright: Copyright 2026 SamaritanOC
+artifactName: oc-dashporter-${version}-${arch}.${ext}
+
+directories:
+  output: dist-app
+  buildResources: build
+
+files:
+  - dist-electron/**/*
+  - public/icon.png
+
+win:
+  target:
+    - nsis
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: OC Dashporter
