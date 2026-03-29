@@ -1,8 +1,10 @@
-# OC Dashporter for Windows
+![RemoteClaw for Linux](https://labb.run/wp-content/uploads/2026/03/MissionControl_Windows.png)
+
+# RemoteClaw for Windows
 
 A native Windows desktop app for remote access to your [OpenClaw](https://openclaw.ai) installation.
 
-OC Dashporter wraps the OpenClaw built-in Control UI in an Electron shell, giving you a proper installable app with persistent authentication — no browser, no token prompts, no storage clearing.
+RemoteClaw for Windows wraps the OpenClaw built-in Control UI in an Electron shell, giving you a proper installable app with persistent authentication — no browser, no token prompts, no storage clearing.
 
 ## Download
 
@@ -14,7 +16,7 @@ OC Dashporter wraps the OpenClaw built-in Control UI in an Electron shell, givin
 
 ## How it works
 
-OC Dashporter connects directly to your OpenClaw gateway over your Tailscale network. Your gateway runs on your home machine as normal. The app is just a secure native window into it from anywhere.
+RemoteClaw for Windows connects directly to your OpenClaw gateway over your Tailscale network. Your gateway runs on your home machine as normal. The app is just a secure native window into it from anywhere.
 ```
 Windows Machine
 └── OC Dashporter for Windows
@@ -54,7 +56,7 @@ oc-dashporter-windows-setup.exe
 
 **Windows SmartScreen warning**
 
-Because OC Dashporter is not yet code-signed, Windows Defender SmartScreen will show a blue warning dialog when you run the installer. This is expected for open-source apps distributed outside the Microsoft Store.
+Because RemoteClaw for Windows is not yet code-signed, Windows Defender SmartScreen will show a blue warning dialog when you run the installer. This is expected for open-source apps distributed outside the Microsoft Store.
 
 To proceed:
 1. Click **More info** in the SmartScreen dialog
