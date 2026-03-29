@@ -1,7 +1,7 @@
 publish:
   provider: github
   owner: SamaritanOC
-  repo: oc-dashporter
+  repo: remote-claw
 
 appId: io.github.samaritanoc.remoteclaw
 productName: RemoteClaw for Windows
