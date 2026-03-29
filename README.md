@@ -1,4 +1,4 @@
-![Dashporter]([https://octodex.github.com/images/bannekat.png](https://labb.run/wp-content/uploads/2026/03/Mission-Control.png))
+![Dashporter](https://labb.run/wp-content/uploads/2026/03/Mission-Control.png)
 
 # OC Dashporter
 
