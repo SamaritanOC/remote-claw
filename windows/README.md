@@ -1,4 +1,4 @@
-![RemoteClaw for Linux](https://labb.run/wp-content/uploads/2026/03/MissionControl_Windows.png)
+![RemoteClaw for Windows](https://labb.run/wp-content/uploads/2026/03/MissionControl_Windows.png)
 
 # RemoteClaw for Windows
 
@@ -10,7 +10,7 @@ RemoteClaw for Windows wraps the OpenClaw built-in Control UI in an Electron she
 
 | OS | Download |
 |---|---|
-| Windows 11 | [oc-dashporter-windows-setup.exe](https://github.com/SamaritanOC/oc-dashporter/releases/latest/download/oc-dashporter-windows-setup.exe) |
+| Windows 11 | [remoteclaw-windows-setup.exe](https://github.com/SamaritanOC/remoteclaw/releases/latest/download/remoteclaw-windows-setup.exe) |
 
 ---
 
@@ -19,7 +19,7 @@ RemoteClaw for Windows wraps the OpenClaw built-in Control UI in an Electron she
 RemoteClaw for Windows connects directly to your OpenClaw gateway over your Tailscale network. Your gateway runs on your home machine as normal. The app is just a secure native window into it from anywhere.
 ```
 Windows Machine
-└── OC Dashporter for Windows
+└── RemoteClaw for Windows
     └── Tailscale → Your OpenClaw gateway
                     └── All agents, models, memory, sessions
 ```
@@ -51,7 +51,7 @@ Add this to your openclaw.json gateway block:
 
 Download and run the installer:
 ```
-oc-dashporter-windows-setup.exe
+remoteclaw-windows-setup.exe
 ```
 
 **Windows SmartScreen warning**
@@ -63,7 +63,7 @@ To proceed:
 2. Click **Run anyway**
 
 If you prefer to unblock the file before running it:
-1. Right-click `oc-dashporter-windows-setup.exe` → **Properties**
+1. Right-click `remoteclaw-windows-setup.exe` → **Properties**
 2. At the bottom of the General tab, check **Unblock**
 3. Click **OK**, then run the installer normally
 
@@ -75,11 +75,11 @@ See [CHANGELOG.md](./CHANGELOG.md) for the full version history and release note
 
 | Version | Date | Notes |
 |---------|------|-------|
-| [1.0.0](https://github.com/SamaritanOC/oc-dashporter/releases/tag/windows-v1.0.0) | 2026-03-28 | Initial release |
+| [1.0.0](https://github.com/SamaritanOC/remoteclaw/releases/tag/windows-v1.0.0) | 2026-03-28 | Initial release |
 
 ## Updating
 
-OC Dashporter for Windows checks for updates automatically on every launch. When a new version is available it downloads in the background and prompts you to restart to apply it.
+RemoteClaw for Windows checks for updates automatically on every launch. When a new version is available it downloads in the background and prompts you to restart to apply it.
 
 ## Troubleshooting
 
@@ -89,7 +89,7 @@ Confirm Tailscale is running and connected on your Windows machine and that your
 
 ### Pairing approval
 
-When you open OC Dashporter for the first time, the gateway registers a new device and waits for operator approval.
+When you open RemoteClaw for Windows for the first time, the gateway registers a new device and waits for operator approval.
 
 **To approve:**
 1. Open Mission Control or the OpenClaw webchat on your gateway host

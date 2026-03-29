@@ -1,11 +1,11 @@
 # Changelog
 
-All notable changes to OC Dashporter for Windows are documented here.
+All notable changes to RemoteClaw for Windows are documented here.
 
 ## [1.0.0] - 2026-03-28
 
 ### Added
-- Initial release of OC Dashporter for Windows
+- Initial release of RemoteClaw for Windows
 - NSIS installer (.exe) built via GitHub Actions
 - Electron shell wrapping the OpenClaw Control UI
 - Tailscale-based remote gateway connectivity

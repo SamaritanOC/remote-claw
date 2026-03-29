@@ -1,8 +1,8 @@
 {
-  "name": "oc-dashporter",
+  "name": "remoteclaw",
   "version": "1.0.2",
   "main": "dist-electron/main.js",
-  "description": "Native Linux desktop app for remote access to your OpenClaw installation over Tailscale",
+  "description": "Native Windows desktop app for RemoteClaw for Windows — remote access to your OpenClaw installation over Tailscale",
   "keywords": [
     "openclaw",
     "openclaw-gui",
@@ -27,9 +27,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SamaritanOC/oc-dashporter.git"
+    "url": "https://github.com/SamaritanOC/remote-claw.git"
   },
-  "homepage": "https://github.com/SamaritanOC/oc-dashporter",
+  "homepage": "https://github.com/SamaritanOC/remote-claw",
   "bin": {
     "openclaw-dashboard": "./bin/cli.mjs"
   },

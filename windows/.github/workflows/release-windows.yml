@@ -32,7 +32,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist-app/oc-dashporter-windows-setup.exe
+          files: dist-app/remoteclaw-windows-setup.exe
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
