@@ -4,7 +4,7 @@
 
 A native desktop app for remote access to your [OpenClaw](https://openclaw.ai) installation.
 
-RemoteClaw for Linux installs your fully functional, default OpenClaw Mission Control dashboard on a remote Windows or Linux computer.
+RemoteClaw installs your fully functional, default OpenClaw Mission Control dashboard on a remote Windows or Linux computer.
 
 ## Download
 
