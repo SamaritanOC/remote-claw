@@ -123,4 +123,4 @@ MIT
 
 ## Support The Samaritan Project
 
-This is an active, build-in-public project focused on developing replicable, private agentic AI infrastructure that can be deployed across any industry or use case. If you're interested in where local-first AI is headed, and want to support the hardware and infrastructure that makes this possible, follow along and contribute at [The Samaritan Project — Buy Me A Coffee](https://buymeacoffee.com/thesamaritanproject)
+This tool is part of the Samaritan Project, a build-in-public OSINT platform running on self-hosted AI infrastructure. Follow along and contribute at [The Samaritan Project — Buy Me A Coffee](https://buymeacoffee.com/thesamaritanproject)
