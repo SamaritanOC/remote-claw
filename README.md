@@ -1,4 +1,4 @@
-![RemoteClaw for Linux](https://labb.run/wp-content/uploads/2026/03/Linux-App-Update.png)
+<img style="float:right; margin-left: 20px;" src="https://labb.run/wp-content/uploads/2026/04/icon-1.png">
 
 #  RemoteClaw
 
