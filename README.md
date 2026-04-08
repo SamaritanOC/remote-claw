@@ -1,6 +1,6 @@
 ![RemoteClaw for Linux](https://labb.run/wp-content/uploads/2026/03/Linux-App-Update.png)
 
-# 🦞 RemoteClaw
+#  RemoteClaw
 
 A native desktop app for remote access to your [OpenClaw](https://openclaw.ai) installation.
 
