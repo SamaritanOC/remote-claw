@@ -1,4 +1,4 @@
-<img style="float:right; margin-left: 20px;" src="https://labb.run/wp-content/uploads/2026/04/icon-1.png">
+<img style="float:center;" src="https://labb.run/wp-content/uploads/2026/04/RemoteClaw.png">
 
 #  RemoteClaw
 
