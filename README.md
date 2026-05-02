@@ -87,6 +87,22 @@ openclaw devices approve <requestId>
 
 Pairing is a one-time step per device. After that the app connects automatically on every launch.
 
+
+#### Pairing approval
+
+When you open RemoteClaw for Linux for the first time and enter your gateway URL and token, the gateway registers a new device and waits for operator approval.
+
+**To approve:**
+1. Open Mission Control or the OpenClaw webchat on your gateway host
+2. Go to **Devices** — you will see a pending device entry
+3. Approve it
+
+Pairing codes expire after **1 hour**. If approval times out, close RemoteClaw for Linux, reopen it, and approve the new pairing request before the hour is up.
+
+If you do not see a pending device, confirm your gateway URL is correct and that Tailscale is connected on both machines.
+
+---
+
 ### Troubleshooting
 
 #### Display / Wayland issues
@@ -104,21 +120,6 @@ On GNOME + Wayland, you can also try:
 ```bash
 GDK_BACKEND=x11 ./remoteclaw-amd64.AppImage
 ```
-
-#### Pairing approval
-
-When you open RemoteClaw for Linux for the first time and enter your gateway URL and token, the gateway registers a new device and waits for operator approval.
-
-**To approve:**
-1. Open Mission Control or the OpenClaw webchat on your gateway host
-2. Go to **Devices** — you will see a pending device entry
-3. Approve it
-
-Pairing codes expire after **1 hour**. If approval times out, close RemoteClaw for Linux, reopen it, and approve the new pairing request before the hour is up.
-
-If you do not see a pending device, confirm your gateway URL is correct and that Tailscale is connected on both machines.
-
----
 
 ## License
 
